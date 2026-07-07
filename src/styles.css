@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'tailwindcss';
+@theme {
+  --color-ink: #16213E;
+  --color-paper: #F8F9FB;
+  --color-surface: #FFFFFF;
+
+  --color-accent: #0E8388;
+  --color-accent-dark: #0B6B6F;
+
+  --color-warning: #F2A93B;
+  --color-danger: #E8555B;
+
+  --color-border: #E4E7EC;
+  --color-muted: #6B7280;
+
+  --font-display: "Sora", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+
+
+@layer base {
+  html {
+    font-family: var(--font-body);
+    color: var(--color-ink);
+    background: var(--color-paper);
+  }
+
+  body {
+    min-height: 100vh;
+    font-family: var(--font-body);
+    margin: 0;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+}
+

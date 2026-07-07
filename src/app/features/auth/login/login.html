@@ -1,0 +1,51 @@
+
+<div class="min-h-screen grid grid-cols-1">
+  <main class="flex items-center justify-center px-6 py-8 bg-paper">
+    <div class="w-full max-w-[380px] border-2 p-5 rounded-xl">
+      <div class="mb-7">
+        <h2 class="font-display text-[26px] font-semibold text-ink mb-1.5">Sign in</h2>
+        <p class="text-sm text-muted">Enter your credentials to access the dashboard.</p>
+      </div>
+
+      <form class="flex flex-col gap-[18px]">
+        <div class="flex flex-col gap-1.5">
+          <label for="username" class="text-[13px] font-medium text-ink">Username</label>
+          <input
+            id="username"
+            type="text"
+            placeholder="e.g. johndoe"
+            autocomplete="username"
+            class="h-11 px-3.5 border border-border rounded-lg text-sm bg-white
+                   focus:outline-none focus:border-accent focus:ring-[3px] focus:ring-accent/15" />
+        </div>
+
+        <div class="flex flex-col gap-1.5">
+          <label for="password" class="text-[13px] font-medium text-ink">Password</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="••••••••"
+            autocomplete="current-password"
+            class="h-11 px-3.5 border border-border rounded-lg text-sm bg-white
+                   focus:outline-none focus:border-accent focus:ring-[3px] focus:ring-accent/15" />
+        </div>
+
+        <div class="flex items-center justify-between text-[13px]">
+          <label class="flex items-center gap-2 text-muted cursor-pointer">
+            <input type="checkbox" class="rounded border-border" />
+            <span>Remember me</span>
+          </label>
+          <a href="javascript:void(0)" class="text-accent hover:underline">Forgot password?</a>
+        </div>
+
+        <button
+          type="submit"
+          class="h-[46px] rounded-lg bg-accent text-white text-sm font-semibold mt-1.5
+                 hover:bg-accent-dark transition-colors
+                 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ink focus-visible:outline-offset-2">
+          Sign in
+        </button>
+      </form>
+    </div>
+  </main>
+</div>

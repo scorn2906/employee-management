@@ -1,0 +1,101 @@
+<!-- home.component.html -->
+<div class="flex flex-col gap-7">
+
+  <!-- Header -->
+  <div class="flex items-start justify-between gap-4 flex-wrap">
+    <div>
+      <h1 class="font-display text-2xl font-semibold text-ink mb-1">Overview</h1>
+      <p class="text-sm text-muted">Tuesday, 7 July 2026 — here's what's happening today.</p>
+    </div>
+    <button class="h-[42px] px-[18px] rounded-lg bg-accent text-white text-sm font-semibold
+                   hover:bg-accent-dark transition-colors">
+      + Add Employee
+    </button>
+  </div>
+
+  <!-- Stat cards -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="bg-white border border-border border-t-[3px] border-t-accent rounded-[10px] p-[18px] flex flex-col gap-1">
+      <span class="text-[13px] text-muted">Total Employees</span>
+      <span class="font-display text-[28px] font-semibold text-ink">128</span>
+      <span class="text-xs text-muted">+4 this month</span>
+    </div>
+    <div class="bg-white border border-border border-t-[3px] border-t-[#1FA97F] rounded-[10px] p-[18px] flex flex-col gap-1">
+      <span class="text-[13px] text-muted">Active</span>
+      <span class="font-display text-[28px] font-semibold text-ink">112</span>
+      <span class="text-xs text-muted">87.5% of total</span>
+    </div>
+    <div class="bg-white border border-border border-t-[3px] border-t-[#9CA3AF] rounded-[10px] p-[18px] flex flex-col gap-1">
+      <span class="text-[13px] text-muted">Inactive</span>
+      <span class="font-display text-[28px] font-semibold text-ink">16</span>
+      <span class="text-xs text-muted">12.5% of total</span>
+    </div>
+    <div class="bg-white border border-border border-t-[3px] border-t-warning rounded-[10px] p-[18px] flex flex-col gap-1">
+      <span class="text-[13px] text-muted">Groups</span>
+      <span class="font-display text-[28px] font-semibold text-ink">10</span>
+      <span class="text-xs text-muted">no new groups</span>
+    </div>
+  </div>
+
+  <!-- Activity + Quick actions -->
+  <div class="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4">
+
+    <section class="bg-white border border-border rounded-[10px] p-5">
+      <h2 class="font-display text-base font-semibold text-ink mb-4">Recent Activity</h2>
+      <ul class="flex flex-col gap-4">
+        <li class="flex gap-3">
+          <span class="w-2 h-2 rounded-full bg-accent mt-1.5 shrink-0"></span>
+          <div>
+            <p class="text-sm text-ink"><strong>Sarah Amelia</strong> was added to Engineering</p>
+            <span class="text-xs text-muted">10 minutes ago</span>
+          </div>
+        </li>
+        <li class="flex gap-3">
+          <span class="w-2 h-2 rounded-full bg-warning mt-1.5 shrink-0"></span>
+          <div>
+            <p class="text-sm text-ink"><strong>Budi Santoso</strong>'s record was updated</p>
+            <span class="text-xs text-muted">42 minutes ago</span>
+          </div>
+        </li>
+        <li class="flex gap-3">
+          <span class="w-2 h-2 rounded-full bg-danger mt-1.5 shrink-0"></span>
+          <div>
+            <p class="text-sm text-ink"><strong>Rina Wijaya</strong> was removed from the system</p>
+            <span class="text-xs text-muted">2 hours ago</span>
+          </div>
+        </li>
+        <li class="flex gap-3">
+          <span class="w-2 h-2 rounded-full bg-accent mt-1.5 shrink-0"></span>
+          <div>
+            <p class="text-sm text-ink"><strong>Made Putra</strong> was added to Finance</p>
+            <span class="text-xs text-muted">Yesterday</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="bg-white border border-border rounded-[10px] p-5">
+      <h2 class="font-display text-base font-semibold text-ink mb-4">Quick Actions</h2>
+      <div class="flex flex-col gap-2.5">
+        <a href="javascript:void(0)"
+           class="flex items-center gap-3 p-3 border border-border rounded-lg
+                  hover:border-accent hover:bg-accent/[0.04] transition-colors">
+          <span class="w-8 h-8 rounded-lg bg-accent/10 text-accent flex items-center justify-center text-[15px] shrink-0">+</span>
+          <div>
+            <p class="text-sm font-medium text-ink m-0">Add Employee</p>
+            <span class="text-xs text-muted">Create a new record</span>
+          </div>
+        </a>
+        <a href="javascript:void(0)"
+           class="flex items-center gap-3 p-3 border border-border rounded-lg
+                  hover:border-accent hover:bg-accent/[0.04] transition-colors">
+          <span class="w-8 h-8 rounded-lg bg-border flex items-center justify-center text-[15px] shrink-0">☰</span>
+          <div>
+            <p class="text-sm font-medium text-ink m-0">View All Employees</p>
+            <span class="text-xs text-muted">Search, sort, and manage</span>
+          </div>
+        </a>
+      </div>
+    </section>
+  </div>
+</div>

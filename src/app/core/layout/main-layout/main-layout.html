@@ -1,0 +1,24 @@
+<div class="dashboard-layout">
+  <app-sidebar
+    [isOpen]="isSidebarOpen()"
+    class="dashboard-layout__sidebar"
+    [class.dashboard-layout__sidebar--open]="isSidebarOpen()">
+  </app-sidebar>
+
+  <div class="dashboard-layout__main">
+    <app-navbar
+      (menuToggle)="toggleSidebar()">
+    </app-navbar>
+
+    <main class="dashboard-layout__content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  @if (isSidebarOpen()) {
+    <div
+      class="dashboard-layout__overlay md:hidden"
+      (click)="toggleSidebar()">
+    </div>
+  }
+</div>
