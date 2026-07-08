@@ -1,10 +1,11 @@
 import {Component, output} from '@angular/core';
-import {LucideAngularModule, Menu, Bell} from 'lucide-angular';
+// import {LucideAngularModule} from '@lucide/angular'
+import { Menu, Bell} from 'lucide';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [LucideAngularModule],
+  imports: [],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })

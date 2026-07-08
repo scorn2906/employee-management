@@ -1,0 +1,56 @@
+<div class="p-6 max-w-2xl mx-auto">
+  @if (employee(); as emp) {
+    <div class="mb-6">
+      <h1 class="text-2xl font-semibold text-ink mb-1">Employee Detail</h1>
+      <p class="text-sm text-muted">Viewing details for {{ emp.firstName }} {{ emp.lastName }}.</p>
+    </div>
+
+    <div class="bg-white border border-border rounded-xl p-6">
+      <div class="flex items-center justify-between mb-6 pb-6 border-b border-border">
+        <div>
+          <h2 class="text-xl font-semibold text-ink">{{ emp.firstName }} {{ emp.lastName }}</h2>
+          <p class="text-sm text-muted">&#64;{{ emp.username }}</p>
+        </div>
+        <p-tag [value]="emp.status" [severity]="statusSeverity()"></p-tag>
+      </div>
+
+      <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+        <div>
+          <dt class="text-xs font-medium text-muted uppercase tracking-wide mb-1">Email</dt>
+          <dd class="text-sm text-ink">{{ emp.email }}</dd>
+        </div>
+
+        <div>
+          <dt class="text-xs font-medium text-muted uppercase tracking-wide mb-1">Birth Date</dt>
+          <dd class="text-sm text-ink">{{ emp.birthDate | dateFormat }}</dd>
+        </div>
+
+        <div>
+          <dt class="text-xs font-medium text-muted uppercase tracking-wide mb-1">Basic Salary</dt>
+          <dd class="text-sm text-ink">{{ emp.basicSalary | currencyFormat}}</dd>
+        </div>
+
+        <div>
+          <dt class="text-xs font-medium text-muted uppercase tracking-wide mb-1">Group</dt>
+          <dd class="text-sm text-ink">{{ emp.group }}</dd>
+        </div>
+
+        <div class="md:col-span-2">
+          <dt class="text-xs font-medium text-muted uppercase tracking-wide mb-1">Description</dt>
+          <dd class="text-sm text-ink">{{ emp.description }}</dd>
+        </div>
+      </dl>
+
+      <div class="flex justify-end pt-6 mt-6 border-t border-border">
+        <p-button label="OK" (onClick)="handleBack()"></p-button>
+      </div>
+    </div>
+  } @else {
+    <div class="text-center py-12 text-muted">
+      Employee not found.
+      <div class="mt-4">
+        <p-button label="Back to List" [outlined]="true" (onClick)="handleBack()"></p-button>
+      </div>
+    </div>
+  }
+</div>

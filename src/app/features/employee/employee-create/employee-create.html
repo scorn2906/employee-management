@@ -1,0 +1,172 @@
+<p-toast></p-toast>
+
+<div class="p-6 max-w-2xl mx-auto">
+  <div class="mb-6">
+    <h1 class="text-2xl font-semibold text-ink mb-1">Add Employee</h1>
+    <p class="text-sm text-muted">Fill in the employee details below.</p>
+  </div>
+
+  <form
+    [formGroup]="employeeForm"
+    (ngSubmit)="handleSave()"
+    class="bg-white border border-border rounded-xl p-6 flex flex-col gap-5">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div class="flex flex-col gap-1.5">
+        <label for="username" class="text-[13px] font-medium text-ink">Username</label>
+        <input
+          id="username"
+          pInputText
+          type="text"
+          formControlName="username"
+          placeholder="Insert username"
+          class="w-full"
+        />
+        <small class="text-red-500 text-xs">
+          {{getErrorMessage('username')}}
+        </small>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="email" class="text-[13px] font-medium text-ink">Email</label>
+        <input
+          id="email"
+          pInputText
+          type="email"
+          formControlName="email"
+          placeholder="Insert email"
+          class="w-full"
+        />
+
+        <small class="text-red-500 text-xs">
+          {{getErrorMessage('email')}}
+        </small>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="firstName" class="text-[13px] font-medium text-ink">First Name</label>
+        <input
+          id="firstName"
+          pInputText
+          type="text"
+          formControlName="firstName"
+          placeholder="Insert firstname"
+          class="w-full"
+        />
+        <small class="text-red-500 text-xs">
+          {{getErrorMessage('firstName')}}
+        </small>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="lastName" class="text-[13px] font-medium text-ink">Last Name</label>
+        <input
+          id="lastName"
+          pInputText
+          type="text"
+          formControlName="lastName"
+          placeholder="Insert lastname"
+          class="w-full"
+        />
+        <small class="text-red-500 text-xs">
+          {{getErrorMessage('lastName')}}
+        </small>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="birthDate" class="text-[13px] font-medium text-ink">Birth Date</label>
+        <p-datepicker
+          inputId="birthDate"
+          formControlName="birthDate"
+          [maxDate]="today"
+          dateFormat="dd/mm/yy"
+          [showIcon]="true"
+          placeholder="Select birth date"
+          styleClass="w-full">
+        </p-datepicker>
+        <small class="text-red-500 text-xs">
+          {{getErrorMessage('birthDate')}}
+        </small>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="basicSalary" class="text-[13px] font-medium text-ink">Basic Salary</label>
+        <p-inputnumber
+          inputId="basicSalary"
+          formControlName="basicSalary"
+          mode="decimal"
+          [minFractionDigits]="0"
+          [maxFractionDigits]="2"
+          placeholder="Insert salary"
+          styleClass="w-full">
+        </p-inputnumber>
+        <small class="text-red-500 text-xs">
+          {{getErrorMessage('basicSalary')}}
+        </small>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="status" class="text-[13px] font-medium text-ink">Status</label>
+        <p-select
+          inputId="status"
+          formControlName="status"
+          [options]="statusOptions"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Select status"
+          styleClass="w-full">
+        </p-select>
+        <small class="text-red-500 text-xs">
+          {{getErrorMessage('status')}}
+        </small>
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="group" class="text-[13px] font-medium text-ink">Group</label>
+        <p-select
+          inputId="group"
+          formControlName="group"
+          [options]="groupOptions"
+          optionLabel="label"
+          optionValue="value"
+          [filter]="true"
+          filterPlaceholder="Search group..."
+          placeholder="Select group"
+          styleClass="w-full">
+        </p-select>
+        <small class="text-red-500 text-xs">
+          {{getErrorMessage('group')}}
+        </small>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-1.5">
+      <label for="description" class="text-[13px] font-medium text-ink">Description</label>
+      <textarea
+        id="description"
+        pInputText
+        formControlName="description"
+        rows="3"
+        placeholder="Additional notes"
+        class="w-full min-h-24">
+      </textarea>
+      <small class="text-red-500 text-xs">
+        {{getErrorMessage('description')}}
+      </small>
+    </div>
+
+    <div class="flex justify-end gap-3 pt-2 border-t border-border">
+      <p-button
+        label="Cancel"
+        severity="secondary"
+        [outlined]="true"
+        type="button"
+        (onClick)="handleCancel()">
+      </p-button>
+      <p-button
+        label="Save"
+        type="submit">
+      </p-button>
+    </div>
+  </form>
+</div>

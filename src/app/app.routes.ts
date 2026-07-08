@@ -1,4 +1,5 @@
 import {Routes} from '@angular/router';
+import {EmployeeCreate} from './features/employee/employee-create/employee-create';
 
 export const routes: Routes = [
   {
@@ -24,8 +25,23 @@ export const routes: Routes = [
     children: [
       {
         path: 'employees',
-        loadComponent: () =>
-          import('./features/home/home').then((m) => m.Home),
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('./features/employee/employee-list/employee-list').then((m) => m.EmployeeList),
+          },
+          {
+            path: 'create',
+            loadComponent: () => import('./features/employee/employee-create/employee-create').then(m => m.EmployeeCreate)
+          },
+          {
+            path: ':id',
+            loadComponent: () =>
+              import('./features/employee/employee-detail/employee-detail').then((m) => m.EmployeeDetail),
+          },
+
+        ]
       },
     ],
   },

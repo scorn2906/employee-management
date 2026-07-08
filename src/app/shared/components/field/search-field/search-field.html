@@ -1,0 +1,33 @@
+@if(icon) {
+
+  <p-iconfield>
+
+    <p-inputicon>
+      <i [class]="icon"></i>
+    </p-inputicon>
+
+    <input
+      pInputText
+      class="w-full"
+      [type]="type"
+      [disabled]="disabled"
+      [ngModel]="value"
+      (ngModelChange)="handleInput($event)"
+      (blur)="handleBlur()"
+      [placeholder]="placeholder" />
+
+  </p-iconfield>
+
+} @else {
+
+  <input
+    pInputText
+    class="w-full"
+    [type]="type"
+    [disabled]="disabled"
+    [ngModel]="value"
+    (ngModelChange)="handleInput($event)"
+    (blur)="handleBlur()"
+    [placeholder]="placeholder" />
+
+}

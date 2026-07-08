@@ -7,32 +7,52 @@
         <p class="text-sm text-muted">Enter your credentials to access the dashboard.</p>
       </div>
 
-      <form class="flex flex-col gap-[18px]">
+      @if (submitError()) {
+        <div class="mb-4 px-3.5 py-2.5 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm">
+          {{ submitError() }}
+        </div>
+      }
+
+      <form class="flex flex-col gap-[18px]"
+            [formGroup]="loginForm"
+            (ngSubmit)="handleSubmit()"
+      >
         <div class="flex flex-col gap-1.5">
           <label for="username" class="text-[13px] font-medium text-ink">Username</label>
           <input
+            pInputText
             id="username"
             type="text"
-            placeholder="e.g. johndoe"
+            placeholder="Input username"
+            formControlName="username"
             autocomplete="username"
             class="h-11 px-3.5 border border-border rounded-lg text-sm bg-white
-                   focus:outline-none focus:border-accent focus:ring-[3px] focus:ring-accent/15" />
-        </div>
-
-        <div class="flex flex-col gap-1.5">
+                   focus:outline-none focus:border-accent focus:ring-[3px] focus:ring-accent/15"
+            [class.border-red-500]="f.username.invalid && f.username.touched"
+          />
+          @if (getErrorMessage('username'); as message) {
+            <small class="text-red-500 text-xs">{{ message }}</small>
+          }
           <label for="password" class="text-[13px] font-medium text-ink">Password</label>
           <input
+            pInputText
             id="password"
             type="password"
-            placeholder="••••••••"
+            placeholder="Input password"
+            formControlName="password"
             autocomplete="current-password"
             class="h-11 px-3.5 border border-border rounded-lg text-sm bg-white
-                   focus:outline-none focus:border-accent focus:ring-[3px] focus:ring-accent/15" />
+                   focus:outline-none focus:border-accent focus:ring-[3px] focus:ring-accent/15"
+            [class.border-red-500]="f.password.invalid && f.password.touched"
+          />
+          @if (getErrorMessage('password'); as message) {
+            <small class="text-red-500 text-xs">{{ message }}</small>
+          }
         </div>
 
         <div class="flex items-center justify-between text-[13px]">
           <label class="flex items-center gap-2 text-muted cursor-pointer">
-            <input type="checkbox" class="rounded border-border" />
+            <input type="checkbox" class="rounded border-border" formControlName="remember"/>
             <span>Remember me</span>
           </label>
           <a href="javascript:void(0)" class="text-accent hover:underline">Forgot password?</a>
@@ -40,10 +60,13 @@
 
         <button
           type="submit"
+          [disabled]="isLoading"
           class="h-[46px] rounded-lg bg-accent text-white text-sm font-semibold mt-1.5
                  hover:bg-accent-dark transition-colors
-                 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ink focus-visible:outline-offset-2">
-          Sign in
+                 focus-visible:outline-2 focus-visible:outline-ink focus-visible:outline-offset-2
+                 disabled:bg-gray-500"
+          >
+          {{ isLoading ? 'Loading' : 'Sign in' }}
         </button>
       </form>
     </div>

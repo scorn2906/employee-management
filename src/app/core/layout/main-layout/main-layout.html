@@ -1,24 +1,27 @@
-<div class="dashboard-layout">
+<div class="min-h-screen flex bg-paper">
   <app-sidebar
     [isOpen]="isSidebarOpen()"
-    class="dashboard-layout__sidebar"
-    [class.dashboard-layout__sidebar--open]="isSidebarOpen()">
+    class="fixed inset-y-0 left-0 z-40 w-64 shrink-0 transform transition-transform duration-200 ease-in-out
+           -translate-x-full
+           md:translate-x-0 md:static md:inset-auto"
+    [class.translate-x-0]="isSidebarOpen()">
   </app-sidebar>
-
-  <div class="dashboard-layout__main">
-    <app-navbar
-      (menuToggle)="toggleSidebar()">
-    </app-navbar>
-
-    <main class="dashboard-layout__content">
-      <router-outlet></router-outlet>
-    </main>
-  </div>
 
   @if (isSidebarOpen()) {
     <div
-      class="dashboard-layout__overlay md:hidden"
+      class="fixed inset-0 z-30 bg-black/40 md:hidden"
       (click)="toggleSidebar()">
     </div>
   }
+
+  <div class="flex flex-1 flex-col min-w-0">
+    <app-navbar
+      class="sticky top-0 z-20 shrink-0 border-b border-border bg-white"
+      (menuToggle)="toggleSidebar()">
+    </app-navbar>
+
+    <main class="flex-1 overflow-y-auto p-6">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
 </div>

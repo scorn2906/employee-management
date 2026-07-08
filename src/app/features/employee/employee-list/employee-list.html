@@ -1,0 +1,128 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+<div class="p-6">
+  <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-y-2 md:gap-y-0">
+    <div>
+      <h1 class="text-2xl font-semibold text-ink mb-1">Employees</h1>
+      <p class="text-sm text-muted">Manage your employee records.</p>
+    </div>
+
+    <p-button
+      label="Add Employee"
+      icon="pi pi-plus"
+      (onClick)="goToAddEmployee()">
+    </p-button>
+  </div>
+
+  <div class="bg-white border border-border rounded-xl overflow-hidden">
+    <div class="flex flex-col md:flex-row gap-3 p-4 border-b border-border">
+      <div class="flex-1">
+        <app-search-field
+          [(ngModel)]="state.nameFilter"
+          placeholder="Search Employee"
+          icon="pi pi-search">
+        </app-search-field>
+      </div>
+
+      <p-select
+        [options]="statusOptions"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Filter by status"
+        class="w-full md:w-56"
+        [ngModel]="state.statusFilter()"
+        (ngModelChange)="state.setStatus($event)">
+      </p-select>
+    </div>
+
+    <p-table
+      [value]="filteredEmployees()"
+      [paginator]="true"
+      [rows]="state.rows()"
+      [first]="state.first()"
+      (onPage)="state.setPage($event.first, $event.rows)"
+      [rowsPerPageOptions]="rowsPerPageOptions"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} employees"
+      [sortMode]="'single'"
+      dataKey="id"
+      responsiveLayout="scroll">
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="username">Username <p-sortIcon field="username" /></th>
+          <th pSortableColumn="firstName">First Name <p-sortIcon field="firstName" /></th>
+          <th pSortableColumn="lastName">Last Name <p-sortIcon field="lastName" /></th>
+          <th pSortableColumn="email">Email <p-sortIcon field="email" /></th>
+          <th pSortableColumn="birthDate">Birth Date <p-sortIcon field="birthDate" /></th>
+          <th pSortableColumn="basicSalary">Basic Salary <p-sortIcon field="basicSalary" /></th>
+          <th pSortableColumn="status">Status <p-sortIcon field="status" /></th>
+          <th pSortableColumn="group">Group <p-sortIcon field="group" /></th>
+          <th style="width: 170px">Action</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-employee>
+        <tr>
+          <td>
+            <button
+              type="button"
+              class="text-accent hover:underline"
+              (click)="goToDetail(employee)">
+              {{ employee.username }}
+            </button>
+          </td>
+          <td>{{ employee.firstName }}</td>
+          <td>{{ employee.lastName }}</td>
+          <td>{{ employee.email }}</td>
+          <td>{{ employee.birthDate | date: 'dd MMM yyyy' }}</td>
+          <td>{{ employee.basicSalary | currency: 'IDR ' : 'symbol' : '1.0-0' }}</td>
+          <td>
+            <p-tag
+              [value]="employee.status"
+              [severity]="getStatusSeverity(employee.status)">
+            </p-tag>
+          </td>
+          <td>{{ employee.group }}</td>
+          <td>
+            <div class="flex gap-1">
+              <p-button
+                icon="pi pi-eye"
+                severity="secondary"
+                [text]="true"
+                [rounded]="true"
+                (onClick)="goToDetail(employee)"
+                pTooltip="View Detail">
+              </p-button>
+              <p-button
+                icon="pi pi-pencil"
+                severity="warn"
+                [text]="true"
+                [rounded]="true"
+                (onClick)="onEdit(employee)"
+                pTooltip="Edit">
+              </p-button>
+              <p-button
+                icon="pi pi-trash"
+                severity="danger"
+                [text]="true"
+                [rounded]="true"
+                (onClick)="onDelete(employee)"
+                pTooltip="Delete">
+              </p-button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="9" class="text-center py-8 text-muted">
+            No employees found matching your search criteria.
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

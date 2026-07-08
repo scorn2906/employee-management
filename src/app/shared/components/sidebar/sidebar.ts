@@ -1,11 +1,15 @@
 import {Component, input} from '@angular/core';
 import {RouterLink, RouterLinkActive} from '@angular/router';
-import {LucideAngularModule, Users, LayoutDashboard, LogOut} from 'lucide-angular';
+import {
+  LayoutDashboard,
+  Users,
+  LogOut,
+} from 'lucide';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, LucideAngularModule],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',
 })

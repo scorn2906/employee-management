@@ -1,15 +1,16 @@
 <aside class="w-64 h-full bg-white border-r border-gray-200 flex flex-col">
   <div class="h-16 flex items-center px-6 border-b border-gray-200">
-    <span class="text-lg font-semibold text-gray-800">Employee Mgmt</span>
+    <span class="text-lg font-semibold text-gray-800">Employee Management</span>
   </div>
 
   <nav class="flex-1 px-3 py-4 space-y-1">
     @for (item of menuItems; track item.route) {
-      <a>
-      [routerLink]="item.route"
-        routerLinkActive="bg-blue-50 text-blue-600"
-        class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors text-sm font-medium">
-      <lucide-icon [img]="item.icon" [size]="18"></lucide-icon>
+      <a [routerLink]="item.route"
+         routerLinkActive="bg-blue-50 text-blue-600"
+         class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors text-sm font-medium">
+<!--      <lucide-icon [img]="item.icon" [size]="18"></lucide-icon>-->
+
+<!--        <i [lucideIcon]="item.icon" ></i>-->
       {{ item.label }}
       </a>
     }
@@ -17,7 +18,9 @@
 
   <div class="p-3 border-t border-gray-200">
     <button class="flex items-center gap-3 px-3 py-2.5 w-full rounded-lg text-gray-600 hover:bg-red-50 hover:text-red-600 transition-colors text-sm font-medium">
-      <lucide-icon [img]="icons.LogOut" [size]="18"></lucide-icon>
+<!--      <lucide-icon [img]="icons.LogOut" [size]="18"></lucide-icon>-->
+
+<!--      <i [lucideIcon]="icons.LogOut"></i>-->
       Logout
     </button>
   </div>
