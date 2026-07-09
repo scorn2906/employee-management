@@ -1,4 +1,4 @@
-
+<p-toast></p-toast>
 <div class="min-h-screen grid grid-cols-1">
   <main class="flex items-center justify-center px-6 py-8 bg-paper">
     <div class="w-full max-w-[380px] border-2 p-5 rounded-xl">
@@ -28,11 +28,10 @@
             autocomplete="username"
             class="h-11 px-3.5 border border-border rounded-lg text-sm bg-white
                    focus:outline-none focus:border-accent focus:ring-[3px] focus:ring-accent/15"
-            [class.border-red-500]="f.username.invalid && f.username.touched"
           />
-          @if (getErrorMessage('username'); as message) {
-            <small class="text-red-500 text-xs">{{ message }}</small>
-          }
+          <small class="text-red-500 text-xs">
+            {{getErrorMessage('username')}}
+          </small>
           <label for="password" class="text-[13px] font-medium text-ink">Password</label>
           <input
             pInputText
@@ -43,11 +42,10 @@
             autocomplete="current-password"
             class="h-11 px-3.5 border border-border rounded-lg text-sm bg-white
                    focus:outline-none focus:border-accent focus:ring-[3px] focus:ring-accent/15"
-            [class.border-red-500]="f.password.invalid && f.password.touched"
           />
-          @if (getErrorMessage('password'); as message) {
-            <small class="text-red-500 text-xs">{{ message }}</small>
-          }
+          <small class="text-red-500 text-xs">
+            {{getErrorMessage('password')}}
+          </small>
         </div>
 
         <div class="flex items-center justify-between text-[13px]">

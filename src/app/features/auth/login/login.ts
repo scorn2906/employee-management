@@ -2,6 +2,9 @@ import {Component, inject, signal} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
+import {ValidationService} from '../../../shared/services/validation.service';
+import {MessageService} from 'primeng/api';
+import {ToastModule} from 'primeng/toast';
 
 
 const VALIDATION_MESSAGES: Record<string, (error: any, label: string) => string> = {
@@ -18,13 +21,19 @@ const FIELD_LABELS: Record<string, string> = {
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, InputTextModule],
+  imports: [ReactiveFormsModule, InputTextModule, ToastModule],
+  providers: [MessageService],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 export class Login {
   private fb = inject(FormBuilder)
   private router = inject(Router)
+  private readonly validationService = inject(ValidationService)
+  private messageService = inject(MessageService)
+
+  readonly fieldLabels = FIELD_LABELS
+  readonly validationMessages = VALIDATION_MESSAGES
 
   isLoading = false;
 
@@ -40,27 +49,27 @@ export class Login {
 
   get f() { return this.loginForm.controls; }
 
-  getErrorMessage(controlName: keyof typeof this.f): string | null {
-    const control = this.f[controlName];
-    if (!control.errors || !control.touched) return null;
-
-    const label = FIELD_LABELS[controlName] ?? controlName;
-    const firstErrorKey = Object.keys(control.errors)[0];
-    const messageBuilder = VALIDATION_MESSAGES[firstErrorKey];
-
-    return messageBuilder
-      ? messageBuilder(control.errors[firstErrorKey], label)
-      : `${label} is invalid.`;
+  getErrorMessage(controlName: keyof typeof this.f){
+    return this.validationService.getErrorMessage(
+      this.f[controlName],
+      this.fieldLabels[controlName],
+      this.validationMessages
+      )
   }
 
   handleSubmit(){
     if(this.loginForm.invalid){
-      this.loginForm.markAllAsTouched()
-      return;
+      this.validationService.markAllAsTouched(this.loginForm)
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Incomplete Form',
+        detail: 'Please fill in all required fields correctly.',
+        life: 3000,
+      });
+      return
     }
     this.isLoading = true;
     const payload = this.loginForm.getRawValue();
-    console.log(payload);
     setTimeout(() => {
       this.isLoading = false;
 
@@ -72,7 +81,7 @@ export class Login {
       }
       this.submitError.set(null)
       localStorage.setItem('username', payload.username)
-      this.router.navigate(['/'])
+      this.router.navigate(['/employees'])
     }, 1000);
   }
 }

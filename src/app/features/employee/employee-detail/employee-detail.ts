@@ -7,12 +7,8 @@ import {EmployeeService} from '../service/employee.service';
 import {Employee} from '../model/employee.model';
 import {CurrencyFormatPipe} from '../../../shared/pipe/formated-currency.pipe';
 import {IndonesiaDatePipe} from '../../../shared/pipe/formated-date.pipe';
+import {STATUS_SEVERITY} from '../data/employee.data';
 
-const STATUS_SEVERITY: Record<Employee['status'], 'success' | 'danger' | 'warn'> = {
-  Active: 'success',
-  Inactive: 'danger',
-  'On Leave': 'warn',
-};
 
 @Component({
   selector: 'app-employee-detail',

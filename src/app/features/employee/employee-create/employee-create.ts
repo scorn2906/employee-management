@@ -13,6 +13,7 @@ import {EmployeeService, GROUP_OPTIONS} from '../service/employee.service';
 import {Employee} from '../model/employee.model';
 import {ValidationService} from '../../../shared/services/validation.service';
 import {ValidationMessages} from '../../../shared/types/validation-message.types';
+import {STATUS_OPTIONS} from '../data/employee.data';
 
 const VALIDATION_MESSAGES: ValidationMessages = {
   required: (_error, label) => `${label} is required.`,
@@ -75,11 +76,7 @@ export class EmployeeCreate {
   today = new Date();
 
   groupOptions = GROUP_OPTIONS.map((group) => ({ label: group, value: group }));
-  statusOptions = [
-    { label: 'Active', value: 'Active' },
-    { label: 'Inactive', value: 'Inactive' },
-    { label: 'On Leave', value: 'On Leave' },
-  ];
+
   employeeForm = this.fb.nonNullable.group({
     username: ['', [Validators.required]],
     firstName: ['', [Validators.required]],
@@ -130,4 +127,6 @@ export class EmployeeCreate {
   handleCancel(): void {
     this.router.navigate(['/employees']);
   }
+
+  protected readonly STATUS_OPTIONS = STATUS_OPTIONS;
 }

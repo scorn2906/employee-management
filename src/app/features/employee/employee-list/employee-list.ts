@@ -20,19 +20,7 @@ import {TooltipModule} from 'primeng/tooltip';
 import {IconFieldModule} from 'primeng/iconfield';
 import {InputIconModule} from 'primeng/inputicon';
 import {SearchField} from '../../../shared/components/field/search-field/search-field';
-
-const STATUS_OPTIONS = [
-  { label: 'All Status', value: null },
-  { label: 'Active', value: 'Active' },
-  { label: 'Inactive', value: 'Inactive' },
-  { label: 'On Leave', value: 'On Leave' },
-];
-
-const STATUS_SEVERITY: Record<Employee['status'], 'success' | 'danger' | 'warn'> = {
-  Active: 'success',
-  Inactive: 'danger',
-  'On Leave': 'warn',
-};
+import {STATUS_OPTIONS, STATUS_SEVERITY} from '../data/employee.data';
 
 @Component({
   selector: 'app-employee-list',
@@ -65,7 +53,8 @@ export class EmployeeList {
 
   private allEmployees = signal<Employee[]>(this.employeeService.getAll());
 
-  statusOptions = STATUS_OPTIONS;
+  statusOptions = [
+    { label: 'All Status', value: null }, ...STATUS_OPTIONS];
   rowsPerPageOptions = [10, 25, 50, 100];
 
 

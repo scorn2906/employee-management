@@ -1,5 +1,4 @@
 import {Component, output} from '@angular/core';
-// import {LucideAngularModule} from '@lucide/angular'
 import { Menu, Bell} from 'lucide';
 
 @Component({
